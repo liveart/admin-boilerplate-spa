@@ -39,12 +39,7 @@
           </template>
 
           <template #[`item.previewImage`]="{ item }">
-            <img
-              :src="item.columns.previewImage"
-              :alt="item.columns.previewImage"
-              width="50"
-              height="50"
-            />
+            <VuetifyImage :src="item.columns.previewImage" size="50"/>
           </template>
 
           <template #[`item.template`]="{ item }">
@@ -124,6 +119,7 @@ import { getEntityStorePath } from '../../store/entityModules/utils';
 import { PropType } from 'vue';
 import TableHeader from './TableHeader.vue';
 import Pagination from './Pagination.vue';
+import VuetifyImage from './VuetifyImage.vue';
 import { VDataTableServer } from 'vuetify/labs/components';
 import Entity from '@/models/entities/Entity';
 
@@ -150,6 +146,7 @@ const Component = defineComponent({
     VDataTableServer,
     TableHeader,
     Pagination,
+    VuetifyImage,
   },
 
   props: {
