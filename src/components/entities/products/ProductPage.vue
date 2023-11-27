@@ -77,7 +77,7 @@ import { $http } from '../../../api/common/Axios';
 const baseUrl = $http.defaults.baseURL;
 
 const MAX_FILE_SIZE_MB = 1;
-const MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024;
+const MAX_FILE_SIZE_BYTE = MAX_FILE_SIZE_MB * 1024 * 1024;
 
 interface State {
   entity: Product;
@@ -139,7 +139,7 @@ const Component = defineComponent({
     const rules = {
       name: [(v: string) => !!v || 'Name is required'],
       thumbnail: [
-        (v: File[]) => !v || !v.length || v[0].size < MAX_FILE_SIZE || `Preview image size should be less than ${MAX_FILE_SIZE_MB} MB!`
+        (v: File[]) => !v || !v.length || v[0].size < MAX_FILE_SIZE_BYTE || `Preview image size should be less than ${MAX_FILE_SIZE_MB} MB!`
       ],
     };
 

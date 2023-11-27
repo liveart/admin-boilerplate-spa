@@ -161,11 +161,13 @@ const Component = defineComponent({
     const storePath = computed(() => getEntityStorePath(props.entityType));
 
     async function create() {
+      // Create new item
       const resultItem = await store.dispatch(`${storePath.value}/addItem`, props.item);
       if (resultItem instanceof Error) {
         return;
       }
 
+      // Upload thumbnail
       const resultUpdate = await store.dispatch(`${storePath.value}/uploadThumbnail`, {
         itemId: resultItem.id,
         thumbnailFile: props.thumbnail,
@@ -178,11 +180,13 @@ const Component = defineComponent({
     }
 
     async function save() {
+      // Update item
       const resultUpdate = await store.dispatch(`${storePath.value}/updateItem`, props.item);
       if (resultUpdate instanceof Error) {
         return;
       }
 
+      // Update thumbnail
       if (resultUpdate.thumbnail !== props.thumbnail) {
         if (props.thumbnail) {
           const resultUpload = await store.dispatch(`${storePath.value}/uploadThumbnail`, {
@@ -208,6 +212,7 @@ const Component = defineComponent({
     async function deleteItem(confirmed: boolean) {
       if (!confirmed || !props.item) return;
 
+      // Delete item
       const resultDelete = await store.dispatch(`${storePath.value}/deleteItem`, props.item.id);
       if (resultDelete instanceof Error) {
         return;
